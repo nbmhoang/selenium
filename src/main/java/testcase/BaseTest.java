@@ -8,9 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.HomePage;
-import page.LoginPage;
-import page.MyTicketPage;
+import page.*;
 
 public class BaseTest {
 
@@ -27,7 +25,7 @@ public class BaseTest {
 
     @AfterMethod
     public void afterMethod() {
-        webDriver.quit();
+//        webDriver.quit();
     }
 
     @Test
@@ -38,7 +36,19 @@ public class BaseTest {
             MyTicketPage myTicketPage = homePage.goToMyTicketPage();
             myTicketPage.filterTicket(TicketFilter.IGNORE, TicketFilter.IGNORE, "24/11/2020", TicketFilter.PAID_TICKET);
         }
+    }
 
+    @Test
+    public void goToLinkTest() {
+        homePage.goToCreateAnAccountLink();
+    }
+
+    @Test
+    public void goToQuestion() {
+        FAQPage faqPage = homePage.goToFAQPage();
+        for(int i = 1;i < 9;i++) {
+            faqPage.goToQuestion(i);
+        }
     }
 
 }

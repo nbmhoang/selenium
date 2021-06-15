@@ -1,7 +1,6 @@
 package page;
 
-import common.Driver;
-import common.TicketFilter;
+import static common.Driver.webDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -16,27 +15,26 @@ public class MyTicketPage extends BasePage {
 
 
     private Select getDepartStationSelection() {
-        return new Select(Driver.webDriver.findElement(departStationSelection));
+        return new Select(webDriver.findElement(departStationSelection));
     }
 
     private Select getArriveStationSelection() {
-        return new Select(Driver.webDriver.findElement(arriveStationSelection));
+        return new Select(webDriver.findElement(arriveStationSelection));
     }
 
     private WebElement getInputDepartDate() {
-        return Driver.webDriver.findElement(inputDepartDate);
+        return webDriver.findElement(inputDepartDate);
     }
 
     private Select getTicketStatusSelection() {
-        return new Select(Driver.webDriver.findElement(ticketStatusSelection));
+        return new Select(webDriver.findElement(ticketStatusSelection));
     }
 
     private WebElement getBtnFilter() {
-        return Driver.webDriver.findElement(btnFilter);
+        return webDriver.findElement(btnFilter);
     }
 
     public void filterTicket(String departStation, String arriveStation, String departDate, String ticketStatus) {
-
         getDepartStationSelection().selectByVisibleText(departStation);
         getArriveStationSelection().selectByVisibleText(arriveStation);
         getInputDepartDate().sendKeys(departDate);

@@ -1,9 +1,9 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
@@ -11,21 +11,41 @@ public class LoginPage extends BasePage {
     private By inputPassword = By.xpath("//input[@id='password']");
     private By btnLogin = By.xpath("//input[@type='submit']");
     private By errorMessage = By.xpath("//p[@class='message error LoginForm']");
+    private By hyperlinkRegistrationPage = By.linkText("Registration Page");
+    private By hyperlinkForgotPasswordPage = By.linkText("Forgot Password Page");
 
-    protected WebElement getInputEmail() {
-        return Driver.webDriver.findElement(inputEmail);
+    private WebElement getInputEmail() {
+        return webDriver.findElement(inputEmail);
     }
 
-    protected WebElement getInputPassword() {
-        return Driver.webDriver.findElement(inputPassword);
+    private WebElement getInputPassword() {
+        return webDriver.findElement(inputPassword);
     }
 
-    protected WebElement getBtnLogin() {
-        return Driver.webDriver.findElement(btnLogin);
+    private WebElement getBtnLogin() {
+        return webDriver.findElement(btnLogin);
     }
 
-    protected WebElement getErrorMessage() {
-        return Driver.webDriver.findElement(errorMessage);
+    private WebElement getErrorMessage() {
+        return webDriver.findElement(errorMessage);
+    }
+
+    private WebElement getHyperlinkRegistrationPage() {
+        return webDriver.findElement(hyperlinkRegistrationPage);
+    }
+
+    private WebElement getHyperlinkForgotPassword() {
+        return webDriver.findElement(hyperlinkForgotPasswordPage);
+    }
+
+    public RegisterPage clickHyperlinkRegisterPage() {
+        getHyperlinkRegistrationPage().click();
+        return new RegisterPage();
+    }
+
+    public ForgotPasswordPage clickHyperlinkForgotPasswordPage() {
+        getHyperlinkForgotPassword().click();
+        return new ForgotPasswordPage();
     }
 
     public boolean login(String username, String password) {
@@ -36,7 +56,7 @@ public class LoginPage extends BasePage {
         try {
             getErrorMessage();
             return false;
-        } catch (Exception err) {
+        } catch (NoSuchElementException err) {
             return true;
         }
     }

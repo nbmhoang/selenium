@@ -1,6 +1,6 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -21,51 +21,51 @@ public class BasePage {
     private By welcomeMessage = By.xpath("//div[@id='banner']/div[@class='account']/strong");
 
     protected WebElement getTabHome() {
-        return Driver.webDriver.findElement(tabHome);
+        return webDriver.findElement(tabHome);
     }
 
     protected WebElement getTabFAQ() {
-        return Driver.webDriver.findElement(tabFAQ);
+        return webDriver.findElement(tabFAQ);
     }
 
     protected WebElement getTabContact() {
-        return Driver.webDriver.findElement(tabContact);
+        return webDriver.findElement(tabContact);
     }
 
     protected WebElement getTabTimetable() {
-        return Driver.webDriver.findElement(tabTimetable);
+        return webDriver.findElement(tabTimetable);
     }
 
     protected WebElement getTabTicketPrice() {
-        return Driver.webDriver.findElement(tabTicketPrice);
+        return webDriver.findElement(tabTicketPrice);
     }
 
     protected WebElement getTabBookTicket() {
-        return Driver.webDriver.findElement(tabBookTicket);
+        return webDriver.findElement(tabBookTicket);
     }
 
     protected WebElement getTabRegister() {
-        return Driver.webDriver.findElement(tabRegister);
+        return webDriver.findElement(tabRegister);
     }
 
     protected WebElement getTabLogin() {
-        return Driver.webDriver.findElement(tabLogin);
+        return webDriver.findElement(tabLogin);
     }
 
     protected WebElement getTabMyTicket() {
-        return Driver.webDriver.findElement(tabMyTicket);
+        return webDriver.findElement(tabMyTicket);
     }
 
     protected WebElement getTabChangePassword() {
-        return Driver.webDriver.findElement(tabChangePassword);
+        return webDriver.findElement(tabChangePassword);
     }
 
     protected WebElement getTabLogout() {
-        return Driver.webDriver.findElement(tabLogout);
+        return webDriver.findElement(tabLogout);
     }
 
     protected WebElement getWelcomeMessage() {
-        return Driver.webDriver.findElement(welcomeMessage);
+        return webDriver.findElement(welcomeMessage);
     }
 
     public String getWelcomeMessageContent() {
@@ -80,5 +80,10 @@ public class BasePage {
     public MyTicketPage goToMyTicketPage() {
         getTabMyTicket().click();
         return new MyTicketPage();
+    }
+
+    public FAQPage goToFAQPage() {
+        getTabFAQ().click();
+        return new FAQPage();
     }
 }

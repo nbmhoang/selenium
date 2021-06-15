@@ -1,6 +1,6 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,23 +14,23 @@ public class ChangePasswordPage extends BasePage {
     private By validationErrorMessage = By.xpath("//label[@class='validation-error']");
 
     protected WebElement getInputCurrentPassword() {
-        return Driver.webDriver.findElement(inputCurrentPassword);
+        return webDriver.findElement(inputCurrentPassword);
     }
 
     protected WebElement getInputNewPassword() {
-        return Driver.webDriver.findElement(inputNewPassword);
+        return webDriver.findElement(inputNewPassword);
     }
 
     protected WebElement getInputConfirmPassword() {
-        return Driver.webDriver.findElement(inputConfirmPassword);
+        return webDriver.findElement(inputConfirmPassword);
     }
 
     protected WebElement getBtnChangePassword() {
-        return Driver.webDriver.findElement(btnChangePassword);
+        return webDriver.findElement(btnChangePassword);
     }
 
     protected WebElement getErrorMessage() {
-        return Driver.webDriver.findElement(errorMessage);
+        return webDriver.findElement(errorMessage);
     }
 
     public boolean changePassword(String currentPassword, String newPassword, String confirmPassword) {
