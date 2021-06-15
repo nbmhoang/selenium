@@ -7,11 +7,12 @@ import org.openqa.selenium.support.ui.Select;
 
 public class MyTicketPage extends BasePage {
 
-    private By departStationSelection = By.xpath("//select[@name='FilterDpStation']");
-    private By arriveStationSelection = By.xpath("//select[@name='FilterArStation']");
-    private By inputDepartDate = By.xpath("//input[@name='FilterDpDate']");
-    private By ticketStatusSelection = By.xpath("//select[@name='FilterStatus']");
-    private By btnFilter = By.xpath("//input[@type='submit']");
+    private final By filterTable = By.xpath("//div[@class='Filter']");
+    private final By departStationSelection = By.xpath("//select[@name='FilterDpStation']");
+    private final By arriveStationSelection = By.xpath("//select[@name='FilterArStation']");
+    private final By inputDepartDate = By.xpath("//input[@name='FilterDpDate']");
+    private final By ticketStatusSelection = By.xpath("//select[@name='FilterStatus']");
+    private final By btnFilter = By.xpath("//input[@type='submit']");
 
 
     private Select getDepartStationSelection() {
@@ -40,6 +41,20 @@ public class MyTicketPage extends BasePage {
         getInputDepartDate().sendKeys(departDate);
         getTicketStatusSelection().selectByVisibleText(ticketStatus);
         getBtnFilter().click();
+    }
+
+    public int getTotalTicket() {
+        return webDriver.findElements(By.xpath("//table[@class='MyTable']//tr")).size() - 1;
+    }
+
+    // TODO
+    public void deleteTicket() {
+
+    }
+
+    // TODO
+    public void cancelTicket() {
+
     }
 
 }

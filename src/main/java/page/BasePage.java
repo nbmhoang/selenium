@@ -6,62 +6,67 @@ import org.openqa.selenium.WebElement;
 
 public class BasePage {
 
-    private By tabHome = By.xpath("//div[@id='menu']//a[@href='../']");
-    private By tabFAQ = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
-    private By tabContact = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
-    private By tabTimetable = By.xpath("//div[@id='menu']//a[@href='TrainTimeListPage.cshtml']");
-    private By tabTicketPrice = By.xpath("//div[@id='menu']//a[@href='/Page/TrainPriceListPage.cshtml']");
-    private By tabBookTicket = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
-    private By tabRegister = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
-    private By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
-    private By tabMyTicket = By.xpath("//div[@id='menu']//a[@href='/Page/ManageTicket.cshtml']");
-    private By tabChangePassword = By.xpath("//div[@id='menu']//a[@href='/Account/ChangePassword.cshtml']");
-    private By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
+    private final By homeTab = By.xpath("//div[@id='menu']//a[@href='../']");
+    private final By FAQTab = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
+    private final By contactTab = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
+    private final By timetableTab = By.xpath("//div[@id='menu']//a[@href='TrainTimeListPage.cshtml']");
+    private final By ticketPriceTab = By.xpath("//div[@id='menu']//a[@href='/Page/TrainPriceListPage.cshtml']");
+    private final By bookTicketTab = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
+    private final By registerTab = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
+    private final By loginTab = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
+    private final By myTicketTab = By.xpath("//div[@id='menu']//a[@href='/Page/ManageTicket.cshtml']");
+    private final By changePasswordTab = By.xpath("//div[@id='menu']//a[@href='/Account/ChangePassword.cshtml']");
+    private final By logoutTab = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
 
-    private By welcomeMessage = By.xpath("//div[@id='banner']/div[@class='account']/strong");
+    private final By pageHeader = By.xpath("//div[@id='content']/h1[1]");
+    private final By welcomeMessage = By.xpath("//div[@id='banner']/div[@class='account']/strong");
 
-    protected WebElement getTabHome() {
-        return webDriver.findElement(tabHome);
+    protected WebElement getHomeTab() {
+        return webDriver.findElement(homeTab);
     }
 
-    protected WebElement getTabFAQ() {
-        return webDriver.findElement(tabFAQ);
+    protected WebElement getFAQTab() {
+        return webDriver.findElement(FAQTab);
     }
 
-    protected WebElement getTabContact() {
-        return webDriver.findElement(tabContact);
+    protected WebElement getContactTab() {
+        return webDriver.findElement(contactTab);
     }
 
-    protected WebElement getTabTimetable() {
-        return webDriver.findElement(tabTimetable);
+    protected WebElement getTimetableTab() {
+        return webDriver.findElement(timetableTab);
     }
 
-    protected WebElement getTabTicketPrice() {
-        return webDriver.findElement(tabTicketPrice);
+    protected WebElement getTicketPriceTab() {
+        return webDriver.findElement(ticketPriceTab);
     }
 
-    protected WebElement getTabBookTicket() {
-        return webDriver.findElement(tabBookTicket);
+    protected WebElement getBookTicketTab() {
+        return webDriver.findElement(bookTicketTab);
     }
 
-    protected WebElement getTabRegister() {
-        return webDriver.findElement(tabRegister);
+    protected WebElement getRegisterTab() {
+        return webDriver.findElement(registerTab);
     }
 
-    protected WebElement getTabLogin() {
-        return webDriver.findElement(tabLogin);
+    protected WebElement getLoginTab() {
+        return webDriver.findElement(loginTab);
     }
 
-    protected WebElement getTabMyTicket() {
-        return webDriver.findElement(tabMyTicket);
+    protected WebElement getMyTicketTab() {
+        return webDriver.findElement(myTicketTab);
     }
 
-    protected WebElement getTabChangePassword() {
-        return webDriver.findElement(tabChangePassword);
+    protected WebElement getChangePasswordTab() {
+        return webDriver.findElement(changePasswordTab);
     }
 
-    protected WebElement getTabLogout() {
-        return webDriver.findElement(tabLogout);
+    protected WebElement getLogoutTab() {
+        return webDriver.findElement(logoutTab);
+    }
+
+    protected WebElement getPageHeader() {
+        return webDriver.findElement(pageHeader);
     }
 
     protected WebElement getWelcomeMessage() {
@@ -72,18 +77,52 @@ public class BasePage {
         return getWelcomeMessage().getText();
     }
 
+    public String getCurrentPageHeader() {
+        return getPageHeader().getText();
+    }
+
     public LoginPage goToLoginPage() {
-        getTabLogin().click();
+        getLoginTab().click();
         return new LoginPage();
     }
 
     public MyTicketPage goToMyTicketPage() {
-        getTabMyTicket().click();
+        getMyTicketTab().click();
         return new MyTicketPage();
     }
 
     public FAQPage goToFAQPage() {
-        getTabFAQ().click();
+        getFAQTab().click();
         return new FAQPage();
+    }
+
+    public ContactPage goToContactPage() {
+        getContactTab().click();
+        return new ContactPage();
+    }
+
+    public TimetablePage goToTimetablePage() {
+        getTimetableTab().click();
+        return new TimetablePage();
+    }
+
+    public TicketPricePage goToTicketPricePage() {
+        getTicketPriceTab().click();
+        return new TicketPricePage();
+    }
+
+    public BookTicketPage goToBookTicketPage() {
+        getBookTicketTab().click();
+        return new BookTicketPage();
+    }
+
+    public ChangePasswordPage goToChangePasswordPage() {
+        getChangePasswordTab().click();
+        return new ChangePasswordPage();
+    }
+
+    public HomePage logout() {
+        getLogoutTab().click();
+        return new HomePage();
     }
 }

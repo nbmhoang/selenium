@@ -7,8 +7,8 @@ import static common.Driver.webDriver;
 
 public class ForgotPasswordPage extends BasePage {
 
-    private By inputEmail = By.id("email");
-    private By btnSend = By.xpath("//input[@type='submit']");
+    private final By inputEmail = By.id("email");
+    private final By btnSend = By.xpath("//input[@type='submit']");
 
     private WebElement getInputEmail() {
         return webDriver.findElement(inputEmail);

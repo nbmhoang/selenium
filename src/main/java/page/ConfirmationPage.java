@@ -7,8 +7,8 @@ import static common.Driver.webDriver;
 
 public class ConfirmationPage extends BasePage {
 
-    private By inputConfirmationCode = By.id("confirmationCode");
-    private By btnConfirm = By.xpath("//input[@type='submit']");
+    private final By inputConfirmationCode = By.id("confirmationCode");
+    private final By btnConfirm = By.xpath("//input[@type='submit']");
 
     private WebElement getInputConfirmationCode() {
         return webDriver.findElement(inputConfirmationCode);
