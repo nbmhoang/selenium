@@ -7,15 +7,15 @@ import static common.Driver.webDriver;
 
 public class RegisterPage extends BasePage {
 
-    private By inputEmail = By.id("email");
-    private By inputPassword = By.id("password");
-    private By inputConfirmPassword = By.id("confirmPassword");
-    private By inputPID = By.id("pid");
-    private By btnRegister = By.xpath("//input[@type='submit']");
-    private By errorMessage = By.xpath("//p[@class='message error']");
+    private final By inputEmail = By.id("email");
+    private final By inputPassword = By.id("password");
+    private final By inputConfirmPassword = By.id("confirmPassword");
+    private final By inputPID = By.id("pid");
+    private final By btnRegister = By.xpath("//input[@type='submit']");
+    private final By errorMessage = By.xpath("//p[@class='message error']");
 
-    private By hyperlinkLoginPage = By.linkText("login");
-    private By hyperlinkConfirmationPage = By.linkText("here");
+    private final By hyperlinkLoginPage = By.linkText("login");
+    private final By hyperlinkConfirmationPage = By.linkText("here");
 
     private WebElement getInputEmail() {
         return webDriver.findElement(inputEmail);

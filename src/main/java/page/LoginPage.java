@@ -7,12 +7,12 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
 
-    private By inputEmail = By.xpath("//input[@id='username']");
-    private By inputPassword = By.xpath("//input[@id='password']");
-    private By btnLogin = By.xpath("//input[@type='submit']");
-    private By errorMessage = By.xpath("//p[@class='message error LoginForm']");
-    private By hyperlinkRegistrationPage = By.linkText("Registration Page");
-    private By hyperlinkForgotPasswordPage = By.linkText("Forgot Password Page");
+    private final By inputEmail = By.xpath("//input[@id='username']");
+    private final By inputPassword = By.xpath("//input[@id='password']");
+    private final By btnLogin = By.xpath("//input[@type='submit']");
+    private final By errorMessage = By.xpath("//p[@class='message error LoginForm']");
+    private final By hyperlinkRegistrationPage = By.linkText("Registration Page");
+    private final By hyperlinkForgotPasswordPage = By.linkText("Forgot Password Page");
 
     private WebElement getInputEmail() {
         return webDriver.findElement(inputEmail);

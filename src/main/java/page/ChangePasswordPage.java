@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 
 public class ChangePasswordPage extends BasePage {
 
-    private By inputCurrentPassword = By.id("currentPassword");
-    private By inputNewPassword = By.id("newPassword");
-    private By inputConfirmPassword = By.id("confirmPassword");
-    private By btnChangePassword = By.xpath("//input[@type='submit']");
-    private By errorMessage = By.xpath("//p[@class='message error']");
-    private By validationErrorMessage = By.xpath("//label[@class='validation-error']");
+    private final By inputCurrentPassword = By.id("currentPassword");
+    private final By inputNewPassword = By.id("newPassword");
+    private final By inputConfirmPassword = By.id("confirmPassword");
+    private final By btnChangePassword = By.xpath("//input[@type='submit']");
+    private final By errorMessage = By.xpath("//p[@class='message error']");
+    private final By validationErrorMessage = By.xpath("//label[@class='validation-error']");
 
     protected WebElement getInputCurrentPassword() {
         return webDriver.findElement(inputCurrentPassword);
@@ -38,7 +38,7 @@ public class ChangePasswordPage extends BasePage {
         getInputNewPassword().sendKeys(newPassword);
         getInputConfirmPassword().sendKeys(confirmPassword);
         getBtnChangePassword().click();
-        return !getErrorMessage().isDisplayed();
+        return webDriver.findElements(errorMessage).size() == 0;
     }
 
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
 
-    private By createAnAccountLink = By.linkText("create an account");
+    private final By createAnAccountLink = By.linkText("create an account");
 
     private WebElement getCreateAnAccountLink() {
         return webDriver.findElement(createAnAccountLink);

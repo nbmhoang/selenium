@@ -8,12 +8,12 @@ import static common.Driver.webDriver;
 
 public class BookTicketPage extends BasePage {
 
-    private By departDateSelection = By.name("Date");
-    private By departStationSelection = By.name("DepartStation");
-    private By arriveStationSelection = By.name("ArriveStation");
-    private By seatTypeSelection = By.name("SeatType");
-    private By ticketAmountSelection = By.name("TicketAmount");
-    private By btnBookTicket = By.xpath("//input[@type='submit']");
+    private final By departDateSelection = By.name("Date");
+    private final By departStationSelection = By.name("DepartStation");
+    private final By arriveStationSelection = By.name("ArriveStation");
+    private final By seatTypeSelection = By.name("SeatType");
+    private final By ticketAmountSelection = By.name("TicketAmount");
+    private final By btnBookTicket = By.xpath("//input[@type='submit']");
 
     private Select getDepartDateSelection() {
         return new Select(webDriver.findElement(departDateSelection));
