@@ -2,9 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite">
     <test name="Test Basics 1">
+        <parameter name="path" value="\driver\geckodriver.exe"/>
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="testcase.Test"/>
+            <class name="testcase.Testing"/>
         </classes>
     </test>
 </suite>
