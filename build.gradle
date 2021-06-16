@@ -14,7 +14,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.44.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
     // https://mvnrepository.com/artifact/org.testng/testng
     implementation group: 'org.testng', name: 'testng', version: '7.4.0'
@@ -23,6 +23,11 @@ dependencies {
     implementation group: 'com.relevantcodes', name: 'extentreports', version: '2.41.2'
 
 
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 test {
