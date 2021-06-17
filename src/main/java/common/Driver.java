@@ -12,6 +12,11 @@ public class Driver {
 
     public static WebDriver webDriver;
 
+    private static void initDefault() {
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/driver/chromedriver.exe");
+        webDriver = new ChromeDriver();
+    }
+
     public static void initDriver(String browserName, String path) {
         if (Objects.nonNull(browserName) && Objects.nonNull(path)) {
             String absolutePath = System.getProperty("user.dir") + path;
@@ -32,13 +37,13 @@ public class Driver {
                     break;
                 }
                 default: {
-                    System.out.println("Invalid browser");
+                    System.out.println("Using default driver");
+                    initDefault();
                 }
             }
         } else {
-            System.out.println("Invalid config");
+            initDefault();
         }
-
     }
 
 }

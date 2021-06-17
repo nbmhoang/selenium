@@ -7,6 +7,8 @@ import static common.Driver.webDriver;
 
 public class TicketPricePage extends BasePage {
 
+    public static final String HEADER = "Train ticket pricing list";
+
     private final By ticketPriceTable = By.xpath("//table[@class='MyTable MedTable']");
     private final By tableHeader = By.xpath("//tr[@class='TableSmallHeader']/th");
 

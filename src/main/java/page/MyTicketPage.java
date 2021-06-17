@@ -1,19 +1,31 @@
 package page;
 
 import static common.Driver.webDriver;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyTicketPage extends BasePage {
 
+    public static final String HEADER = "Manage Tickets";
+
     private final By filterTable = By.xpath("//div[@class='Filter']");
+    private final By ticketTable = By.xpath("//table[@class='MyTable']");
     private final By departStationSelection = By.xpath("//select[@name='FilterDpStation']");
     private final By arriveStationSelection = By.xpath("//select[@name='FilterArStation']");
     private final By inputDepartDate = By.xpath("//input[@name='FilterDpDate']");
     private final By ticketStatusSelection = By.xpath("//select[@name='FilterStatus']");
     private final By btnFilter = By.xpath("//input[@type='submit']");
+    private final By btnCancel = By.xpath("//input[@type='button' and @value='Cancel']");
+    private final By btnDelete = By.xpath("//input[@type='button' and @value='Delete']");
 
+    private WebElement getTicketTable() {
+        return webDriver.findElement(ticketTable);
+    }
 
     private Select getDepartStationSelection() {
         return new Select(webDriver.findElement(departStationSelection));
@@ -35,6 +47,14 @@ public class MyTicketPage extends BasePage {
         return webDriver.findElement(btnFilter);
     }
 
+    private WebElement getBtnCancel() {
+        return webDriver.findElement(btnCancel);
+    }
+
+    private WebElement getBtnDelete() {
+        return webDriver.findElement(btnDelete);
+    }
+
     public void filterTicket(String departStation, String arriveStation, String departDate, String ticketStatus) {
         getDepartStationSelection().selectByVisibleText(departStation);
         getArriveStationSelection().selectByVisibleText(arriveStation);
@@ -47,14 +67,29 @@ public class MyTicketPage extends BasePage {
         return webDriver.findElements(By.xpath("//table[@class='MyTable']//tr")).size() - 1;
     }
 
-    // TODO
-    public void deleteTicket() {
-
+    public int getTotalCancelableTicket() {
+        return webDriver.findElements(btnCancel).size();
     }
 
-    // TODO
-    public void cancelTicket() {
+    public int getTotalDeletableTicket() {
+        return webDriver.findElements(btnDelete).size();
+    }
 
+    // Delete first deletable ticket
+    public void deleteTicket() {
+        getBtnDelete().click();
+        Alert alert = webDriver.switchTo().alert();
+        alert.accept();
+    }
+
+    // Cancel first cancelable ticket
+    public void cancelTicket() {
+        getBtnCancel().click();
+
+        Alert alert = webDriver.switchTo().alert();
+        alert.accept();
+
+        // Sleep
     }
 
 }

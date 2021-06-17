@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends Account {
+public class Account {
 
-    private String PID;
+    private String email;
+    private String password;
 
 }
