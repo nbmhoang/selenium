@@ -1,12 +1,19 @@
 package page;
 
+import common.Utilities;
+import data.Ticket;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.Objects;
 
 import static common.Driver.webDriver;
 
 public class BookTicketPage extends BasePage {
+
+    public static final String HEADER = "Book ticket";
 
     private final By departDateSelection = By.name("Date");
     private final By departStationSelection = By.name("DepartStation");
@@ -39,12 +46,48 @@ public class BookTicketPage extends BasePage {
         return webDriver.findElement(btnBookTicket);
     }
 
-    public void bookTicket(String departDate, String departFrom, String arriveAt, String seatType, int ticketAmount) {
-        getDepartDateSelection().selectByVisibleText(departDate);
-        getDepartStationSelection().selectByVisibleText(departFrom);
-        getArriveStationSelection().selectByVisibleText(arriveAt);
-        getSeatTypeSelection().selectByVisibleText(seatType);
-        getTicketAmountSelection().selectByVisibleText(String.valueOf(ticketAmount));
+    public String getSelectedDepartDate() {
+        return getDepartDateSelection().getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedDepartStation() {
+        return getDepartStationSelection().getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedArriveStation() {
+        return getArriveStationSelection().getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedSeatType() {
+        return getSeatTypeSelection().getFirstSelectedOption().getText();
+    }
+
+    public int getSelectedTicketAmount() {
+        return Integer.parseInt(getTicketAmountSelection().getFirstSelectedOption().getText());
+    }
+
+    public SuccessPage bookTicket() {
+        Utilities.scrollToEnd();
+        // Leave all option as default
+        getBtnBookTicket().click();
+        return new SuccessPage();
+    }
+
+    public SuccessPage bookTicket(Ticket ticket) {
+        Utilities.scrollToEnd();
+
+        if (Objects.nonNull(ticket.getDepartDate())) {
+            getDepartDateSelection().selectByVisibleText(ticket.getDepartDate());
+        } else {
+            // Set first option
+            ticket.setDepartDate(getDepartDateSelection().getFirstSelectedOption().getText());
+        }
+        getDepartStationSelection().selectByVisibleText(ticket.getDepartFrom());
+        getArriveStationSelection().selectByVisibleText(ticket.getArriveAt());
+        getSeatTypeSelection().selectByVisibleText(ticket.getSeatType());
+        getTicketAmountSelection().selectByVisibleText(String.valueOf(ticket.getAmount()));
+        getBtnBookTicket().click();
+        return new SuccessPage();
     }
 
 }

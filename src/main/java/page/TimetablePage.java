@@ -1,5 +1,6 @@
 package page;
 
+import common.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import static common.Driver.webDriver;
 
 public class TimetablePage extends BasePage {
+
+    public static final String HEADER = "Train Timetable";
 
     private final int departStationIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/thead/tr/th[.='Depart Station']/preceding-sibling::th")).size() + 1;
     private final int arriveStationIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/thead/tr/th[.='Arrive Station']/preceding-sibling::th")).size() + 1;
@@ -25,16 +28,15 @@ public class TimetablePage extends BasePage {
     }
 
     public TicketPricePage checkPrice(String departStation, String arriveStation) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("scrollTo(0, document.body.scrollHeight)");
+        Utilities.scrollToEnd();
         getBtnCheckPrice(departStation, arriveStation).click();
         return new TicketPricePage();
     }
 
-    public void bookTicket(String departStation, String arriveStation) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("scrollTo(0, document.body.scrollHeight)");
+    public BookTicketPage bookTicket(String departStation, String arriveStation) {
+        Utilities.scrollToEnd();
         getBtnBookTicket(departStation, arriveStation).click();
+        return new BookTicketPage();
     }
 
 }

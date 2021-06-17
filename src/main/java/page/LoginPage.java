@@ -1,11 +1,17 @@
 package page;
 
 import static common.Driver.webDriver;
+
+import common.Utilities;
+import data.Account;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
+
+    public static final String HEADER = "Login Page";
 
     private final By inputEmail = By.xpath("//input[@id='username']");
     private final By inputPassword = By.xpath("//input[@id='password']");
@@ -48,17 +54,22 @@ public class LoginPage extends BasePage {
         return new ForgotPasswordPage();
     }
 
-    public boolean login(String username, String password) {
-        getInputEmail().sendKeys(username);
-        getInputPassword().sendKeys(password);
+    public HomePage login(Account account) {
+        Utilities.scrollToEnd();
+
+        getInputEmail().sendKeys(account.getEmail());
+        getInputPassword().sendKeys(account.getPassword());
         // scroll
         getBtnLogin().click();
-        try {
-            getErrorMessage();
-            return false;
-        } catch (NoSuchElementException err) {
-            return true;
-        }
+        return new HomePage();
+    }
+
+    public boolean isErrorDisplay() {
+        return webDriver.findElements(errorMessage).size() != 0;
+    }
+
+    public String getErrorMessageContent() {
+        return getErrorMessage().getText();
     }
 
 

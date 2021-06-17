@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends Account {
+public class ChangePasswordInfo {
 
-    private String PID;
+    private String currentPassword;
+    private String newPassword;
+    private String confirmPassword;
 
 }

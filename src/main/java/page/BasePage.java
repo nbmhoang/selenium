@@ -121,8 +121,25 @@ public class BasePage {
         return new ChangePasswordPage();
     }
 
+    public RegisterPage goToRegisterPage() {
+        getRegisterTab().click();
+        return new RegisterPage();
+    }
+
     public HomePage logout() {
         getLogoutTab().click();
         return new HomePage();
+    }
+
+    public boolean isMyTicketTabDisplayed() {
+        return webDriver.findElements(myTicketTab).size() != 0;
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return webDriver.findElements(changePasswordTab).size() != 0;
+    }
+
+    public boolean isLogoutTabDisplayed() {
+        return webDriver.findElements(logoutTab).size() != 0;
     }
 }
