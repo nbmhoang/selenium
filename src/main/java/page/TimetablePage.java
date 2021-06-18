@@ -2,7 +2,6 @@ package page;
 
 import common.Utilities;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import static common.Driver.webDriver;
@@ -15,7 +14,7 @@ public class TimetablePage extends BasePage {
     private final int arriveStationIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/thead/tr/th[.='Arrive Station']/preceding-sibling::th")).size() + 1;
     private final int btnCheckPriceIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/thead/tr/th[.='Check Price']/preceding-sibling::th")).size() + 1;
     private final int btnBookTicketIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/thead/tr/th[.='Book ticket']/preceding-sibling::th")).size() + 1;
-    private String xpathString = "//table[@class='MyTable WideTable']/tbody/tr[td[%d][.='%s'] and td[%d][.='%s']]/td[%d]";
+    private final String xpathString = "//table[@class='MyTable WideTable']/tbody/tr[td[%d][.='%s'] and td[%d][.='%s']]/td[%d]";
 
     private WebElement getBtnCheckPrice(String departStation, String arriveStation) {
         By btnCheckPrice = By.xpath(String.format(xpathString, departStationIdx, departStation, arriveStationIdx, arriveStation, btnCheckPriceIdx));
@@ -27,10 +26,10 @@ public class TimetablePage extends BasePage {
         return webDriver.findElement(btnCheckPrice);
     }
 
-    public TicketPricePage checkPrice(String departStation, String arriveStation) {
+    public TicketPriceListPage checkPrice(String departStation, String arriveStation) {
         Utilities.scrollToEnd();
         getBtnCheckPrice(departStation, arriveStation).click();
-        return new TicketPricePage();
+        return new TicketPriceListPage();
     }
 
     public BookTicketPage bookTicket(String departStation, String arriveStation) {

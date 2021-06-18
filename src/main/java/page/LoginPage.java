@@ -5,8 +5,6 @@ import static common.Driver.webDriver;
 import common.Utilities;
 import data.Account;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {

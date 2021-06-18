@@ -110,9 +110,9 @@ public class BasePage {
         return new TimetablePage();
     }
 
-    public TicketPricePage goToTicketPricePage() {
+    public TicketPriceListPage goToTicketPricePage() {
         getTicketPriceTab().click();
-        return new TicketPricePage();
+        return new TicketPriceListPage();
     }
 
     public BookTicketPage goToBookTicketPage() {
