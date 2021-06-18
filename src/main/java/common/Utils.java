@@ -10,9 +10,8 @@ import java.util.Random;
 
 import static common.Driver.webDriver;
 
-public class Utis {
+public class Utils {
 
-    private static final String datePattern = "MM/dd/yyyy";
     private static final String dateTimePattern = "yyyyMMdd_HHmmss";
     private static final String LETTER_SPACE = "ABCDEFGHIJKLMNOPQRSTUVWYXZabcdefghijklmnopqrstuvwyxz";
 
@@ -23,18 +22,6 @@ public class Utis {
             str.append(LETTER_SPACE.charAt(random.nextInt(LETTER_SPACE.length())));
         }
         return str.toString();
-    }
-
-    public static String today() {
-        return new SimpleDateFormat(datePattern).format(Calendar.getInstance().getTime());
-    }
-
-    public static String getDayAfterToday(int totalDay) {
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.DATE, totalDay);
-        return new SimpleDateFormat(datePattern).format(calendar.getTime());
     }
 
     public static String generateReportPath() {

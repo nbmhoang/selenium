@@ -9,35 +9,34 @@ import page.HomePage;
 import page.LoginPage;
 import page.MyTicketPage;
 
+import java.time.Duration;
+
 public class TC16 extends BaseTest {
 
-    /*
     @Test(description = "User can cancel a ticket")
     public void TC16() {
         try {
-            test.log(LogStatus.INFO, "Step 1. Go to Login and login with valid account");
+            test.createNode("Step 1. Go to Login and login with valid account");
 
             LoginPage loginPage = homePage.goToLoginPage();
             HomePage homePage = loginPage.login(account);
 
-            test.log(LogStatus.INFO, "Step 2. Book a ticket");
+            test.createNode("Step 2. Book a ticket with default info");
             BookTicketPage bookTicketPage = homePage.goToBookTicketPage();
             bookTicketPage.bookTicket();
 
+            test.createNode("Step 3. Go to My Ticket page and cancel newest ticket");
             MyTicketPage myTicketPage = bookTicketPage.goToMyTicketPage();
             int currentTotalTicket = myTicketPage.getTotalCancelableTicket();
             myTicketPage.cancelTicket();
 
-            WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
+            WebDriverWait wait = new WebDriverWait(Driver.webDriver, Duration.ofSeconds(10));
             wait.until((webDriver -> myTicketPage.getTotalCancelableTicket() == currentTotalTicket - 1));
-            test.log(LogStatus.PASS, "Ticket removed from table");
+            test.pass("Ticket removed from table");
         } catch (TimeoutException e) {
-            test.log(LogStatus.FAIL, "The ticket is not disappear");
+            test.fail("The ticket is not disappear");
         }  catch (Exception ex) {
-            test.log(LogStatus.FAIL, String.format("An error has occurred %s", ex.getMessage()));
+            test.fail(String.format("An error has occurred %s", ex.getMessage()));
         }
     }
-
-     */
-
 }

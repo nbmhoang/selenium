@@ -1,12 +1,13 @@
 package page;
 
-import common.Utis;
+import common.Utils;
 import data.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,14 +69,14 @@ public class BookTicketPage extends BasePage {
     }
 
     public SuccessPage bookTicket() {
-        Utis.scrollToEnd();
+        Utils.scrollToEnd();
         // Leave all option as default
         getBtnBookTicket().click();
         return new SuccessPage();
     }
 
     public SuccessPage bookTicket(Ticket ticket) {
-        Utis.scrollToEnd();
+        Utils.scrollToEnd();
 
         if (Objects.nonNull(ticket.getDepartDate())) {
             getDepartDateSelection().selectByVisibleText(ticket.getDepartDate());
@@ -89,7 +90,7 @@ public class BookTicketPage extends BasePage {
             List<WebElement> originalOptions = getArriveStationSelection().getAllSelectedOptions();
 
             // Wait until Arrive At option is change(Up to 10s)
-            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
             wait.until((driver) -> {
                 List<WebElement> currentOptions = getArriveStationSelection().getAllSelectedOptions();
                 return !originalOptions.equals(currentOptions);
