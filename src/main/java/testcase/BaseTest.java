@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 public class BaseTest {
 
     protected HomePage homePage = new HomePage();
-    private static String reportPath = Utilities.generatReportPath();
+    private static final String reportPath = Utilities.generatReportPath();
 
     protected static ExtentReports reports;
     protected static ExtentTest test;
