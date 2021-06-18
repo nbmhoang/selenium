@@ -8,6 +8,7 @@ import data.Account;
 import data.ChangePasswordInfo;
 import data.RegisterInfo;
 import data.Ticket;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import page.*;
@@ -417,13 +418,11 @@ public class Set1 extends BaseTest {
             myTicketPage.cancelTicket();
 
             WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
-            boolean isSuccess = wait.until((webDriver -> myTicketPage.getTotalCancelableTicket() == currentTotalTicket - 1));
-            if (isSuccess) {
-                test.log(LogStatus.PASS, "Ticket removed from table");
-            } else {
-                test.log(LogStatus.FAIL, "The ticket is not disappear");
-            }
-        } catch (Exception ex) {
+            wait.until((webDriver -> myTicketPage.getTotalCancelableTicket() == currentTotalTicket - 1));
+            test.log(LogStatus.PASS, "Ticket removed from table");
+        } catch (TimeoutException e) {
+            test.log(LogStatus.FAIL, "The ticket is not disappear");
+        }  catch (Exception ex) {
             test.log(LogStatus.FAIL, String.format("An error has occurred %s", ex.getMessage()));
         }
     }
