@@ -77,6 +77,10 @@ public class BasePage {
         return getWelcomeMessage().getText();
     }
 
+    public boolean isUserLoggedIn() {
+        return !getWelcomeMessageContent().equals("Welcome guest!");
+    }
+
     public String getCurrentPageHeader() {
         return getPageHeader().getText();
     }

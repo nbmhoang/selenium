@@ -56,9 +56,14 @@ public class LoginPage extends BasePage {
 
     public HomePage login(Account account) {
         Utilities.scrollToEnd();
+        // Clear input before input new one
+        WebElement emailInput = getInputEmail();
+        WebElement passwordInput = getInputPassword();
+        emailInput.clear();
+        passwordInput.clear();
 
-        getInputEmail().sendKeys(account.getEmail());
-        getInputPassword().sendKeys(account.getPassword());
+        emailInput.sendKeys(account.getEmail());
+        passwordInput.sendKeys(account.getPassword());
         // scroll
         getBtnLogin().click();
         return new HomePage();

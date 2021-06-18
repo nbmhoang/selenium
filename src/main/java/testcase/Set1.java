@@ -2,17 +2,19 @@ package testcase;
 
 import com.relevantcodes.extentreports.LogStatus;
 import common.Constant;
+import common.Driver;
 import common.Utilities;
 import data.Account;
 import data.ChangePasswordInfo;
 import data.RegisterInfo;
 import data.Ticket;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import page.*;
 
 public class Set1 extends BaseTest {
 
-    private Account account = new Account(Constant.USERNAME, Constant.PASSWORD);
+    private final Account account = new Account(Constant.USERNAME, Constant.PASSWORD);
 
     @Test(description = "User can log into Railway with valid username and password")
     public void TC01() {
@@ -34,7 +36,7 @@ public class Set1 extends BaseTest {
 
     }
 
-    @Test(description = "User can't login with blank \"Username\" texbox")
+    @Test(description = "User can't login with blank \"Username\" textbox")
     public void TC02() {
         try {
             test.log(LogStatus.INFO, "Step 1. Go to login page");
@@ -75,7 +77,7 @@ public class Set1 extends BaseTest {
                 String expectedErrorMessage = "There was a problem with your login and/or errors exist in your form.";
                 String actualErrorMessage = loginPage.getErrorMessageContent();
                 if (actualErrorMessage.equals(expectedErrorMessage)) {
-                    test.log(LogStatus.PASS, "User can't login with blank \"Username\" texbox");
+                    test.log(LogStatus.PASS, "User can't login with blank \"Username\" textbox");
                 } else {
                     test.log(LogStatus.FAIL, String.format("The error message content doesn't correctly. Expected: '%s' but received '%s'", expectedErrorMessage, actualErrorMessage));
                 }
@@ -124,7 +126,7 @@ public class Set1 extends BaseTest {
             if (expectedErrorMessage.equals(actualErrorMessage)) {
                 test.log(LogStatus.PASS, "Message is display correct");
             } else {
-                test.log(LogStatus.FAIL, String.format("Wrong message. Expected: '%s' but 'received'", expectedErrorMessage, actualErrorMessage));
+                test.log(LogStatus.FAIL, String.format("Wrong message. Expected: '%s' but received '%s'", expectedErrorMessage, actualErrorMessage));
             }
         } catch (Exception ex) {
             test.log(LogStatus.FAIL, String.format("An error has occurred %s", ex.getMessage()));
@@ -352,7 +354,7 @@ public class Set1 extends BaseTest {
             if (successPage.getCurrentPageHeader().equals("Ticket Booked Successfully!") && successPage.checkTicket(ticket)) {
                 test.log(LogStatus.PASS, "User book ticket successfully and ticket ìnfo is correct");
             } else {
-                test.log(LogStatus.FAIL, "Message is not display correct or Ticket info is not correct. Ticket info: " + ticket.toString());
+                test.log(LogStatus.FAIL, "Message is not display correct or Ticket info is not correct. Ticket info: " + ticket);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -414,8 +416,9 @@ public class Set1 extends BaseTest {
             int currentTotalTicket = myTicketPage.getTotalCancelableTicket();
             myTicketPage.cancelTicket();
 
-            // Check the ticket is disappeared or not
-            if (currentTotalTicket - 1 == myTicketPage.getTotalCancelableTicket()) {
+            WebDriverWait wait = new WebDriverWait(Driver.webDriver, 10);
+            boolean isSuccess = wait.until((webDriver -> myTicketPage.getTotalCancelableTicket() == currentTotalTicket - 1));
+            if (isSuccess) {
                 test.log(LogStatus.PASS, "Ticket removed from table");
             } else {
                 test.log(LogStatus.FAIL, "The ticket is not disappear");

@@ -4,9 +4,14 @@ import common.Utilities;
 import data.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.Objects;
 
 import static common.Driver.webDriver;
@@ -82,7 +87,14 @@ public class BookTicketPage extends BasePage {
             // Set first option
             ticket.setDepartDate(getDepartDateSelection().getFirstSelectedOption().getText());
         }
+
+        List<WebElement> currentOption = getArriveStationSelection().getAllSelectedOptions();
         getDepartStationSelection().selectByVisibleText(ticket.getDepartFrom());
+
+        // Wait until Arrive At option is change(Up to 10s)
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until((driver) -> !currentOption.equals(getArriveStationSelection().getAllSelectedOptions()));
+
         getArriveStationSelection().selectByVisibleText(ticket.getArriveAt());
         getSeatTypeSelection().selectByVisibleText(ticket.getSeatType());
         getTicketAmountSelection().selectByVisibleText(String.valueOf(ticket.getAmount()));
