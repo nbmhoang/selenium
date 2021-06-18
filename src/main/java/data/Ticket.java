@@ -26,5 +26,6 @@ public class Ticket {
     private String arriveAt;
     private String seatType;
     private int amount;
+    private String status;
 
 }

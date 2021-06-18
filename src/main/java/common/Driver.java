@@ -2,6 +2,7 @@ package common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -31,9 +32,9 @@ public class Driver {
                     webDriver = new FirefoxDriver();
                     break;
                 }
-                case "ie": {
-                    System.setProperty("webdriver.ie.driver", absolutePath);
-                    webDriver = new InternetExplorerDriver();
+                case "edge": {
+                    System.setProperty("webdriver.edge.driver", absolutePath);
+                    webDriver = new EdgeDriver();
                     break;
                 }
                 default: {

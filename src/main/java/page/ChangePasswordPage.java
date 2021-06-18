@@ -2,7 +2,7 @@ package page;
 
 import static common.Driver.webDriver;
 
-import common.Utilities;
+import common.Utis;
 import data.ChangePasswordInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -48,7 +48,7 @@ public class ChangePasswordPage extends BasePage {
     }
 
     public boolean changePassword(ChangePasswordInfo data) {
-        Utilities.scrollToEnd();
+        Utis.scrollToEnd();
 
         getInputCurrentPassword().sendKeys(data.getCurrentPassword());
         getInputNewPassword().sendKeys(data.getNewPassword());
