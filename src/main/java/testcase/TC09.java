@@ -1,5 +1,6 @@
 package testcase;
 
+import com.aventstack.extentreports.ExtentTest;
 import data.ChangePasswordInfo;
 import org.testng.annotations.Test;
 import page.ChangePasswordPage;
@@ -8,36 +9,35 @@ import page.LoginPage;
 
 public class TC09 extends BaseTest {
 
-    /*
     @Test(description = "User can change password")
     public void TC09() {
         try {
-            test.log(LogStatus.INFO, "Step 1. Go to login page and login with valid account");
+            test.createNode("Step 1. Go to login page and login with valid account");
             LoginPage loginPage = homePage.goToLoginPage();
 
             HomePage homePage = loginPage.login(account);
 
-            test.log(LogStatus.INFO, "Step 2. Click on Change Password tab");
+            test.createNode("Step 2. Click on Change Password tab");
             ChangePasswordPage changePasswordPage = homePage.goToChangePasswordPage();
 
-            test.log(LogStatus.INFO, "Step 3. Change password to %s");
+            test.createNode("Step 3. Change account password");
             ChangePasswordInfo info = new ChangePasswordInfo(account.getPassword(), account.getPassword(), account.getPassword());
             changePasswordPage.changePassword(info);
 
-            test.log(LogStatus.INFO, "Step 4. Check the message is correctly display");
+            ExtentTest finalStep = test.createNode("Step 4. Check the message is correctly display");
             String expectedMessage = "Your password has been updated";
             String actualMessage = changePasswordPage.getSuccessMessageContent();
             if (expectedMessage.equals(actualMessage)) {
-                test.log(LogStatus.PASS, "User change password successfully");
+                test.pass("User change password successfully");
             } else {
-                test.log(LogStatus.FAIL, String.format("The message is not correct. Expected: '%s' but received '%s'", expectedMessage, actualMessage));
+                test.fail("The message is not correct");
+                finalStep.info(String.format("Expected: '%s'", expectedMessage));
+                finalStep.info(String.format("Actual: '%s'", actualMessage));
             }
         } catch (Exception ex) {
-            test.log(LogStatus.FAIL, String.format("An error has occurred %s", ex.getMessage()));
+            test.fail(String.format("An error has occurred %s", ex.getMessage()));
         }
 
     }
-
-     */
 
 }

@@ -2,7 +2,7 @@ package page;
 
 import static common.Driver.webDriver;
 
-import common.Utis;
+import common.Utils;
 import data.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -53,7 +53,7 @@ public class LoginPage extends BasePage {
     }
 
     public HomePage login(Account account) {
-        Utis.scrollToEnd();
+        Utils.scrollToEnd();
         // Clear input before input new one
         WebElement emailInput = getInputEmail();
         WebElement passwordInput = getInputPassword();
