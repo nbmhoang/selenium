@@ -1,6 +1,6 @@
 package page;
 
-import common.Utilities;
+import common.Utis;
 import data.RegisterInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -90,7 +90,7 @@ public class RegisterPage extends BasePage {
     }
 
     public void register(RegisterInfo registerInfo) {
-        Utilities.scrollToEnd();
+        Utis.scrollToEnd();
 
         getInputEmail().sendKeys(registerInfo.getEmail());
         getInputPassword().sendKeys(registerInfo.getPassword());

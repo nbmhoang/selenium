@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static common.Driver.webDriver;
 
-public class Utilities {
+public class Utis {
 
     private static final String datePattern = "MM/dd/yyyy";
     private static final String dateTimePattern = "yyyyMMdd_HHmmss";
@@ -18,11 +18,11 @@ public class Utilities {
 
     public static String generateRandomString(int length) {
         Random random = new Random();
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for(int i = 0; i < length; i++) {
-            str += LETTER_SPACE.charAt(random.nextInt(LETTER_SPACE.length()));
+            str.append(LETTER_SPACE.charAt(random.nextInt(LETTER_SPACE.length())));
         }
-        return str;
+        return str.toString();
     }
 
     public static String today() {
@@ -37,7 +37,7 @@ public class Utilities {
         return new SimpleDateFormat(datePattern).format(calendar.getTime());
     }
 
-    public static String generatReportPath() {
+    public static String generateReportPath() {
         return String.format("%sreport_%s.html", System.getProperty("user.dir"), new SimpleDateFormat(dateTimePattern).format(Calendar.getInstance().getTime()));
     }
 

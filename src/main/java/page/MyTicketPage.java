@@ -2,6 +2,7 @@ package page;
 
 import static common.Driver.webDriver;
 
+import data.Ticket;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -83,11 +84,29 @@ public class MyTicketPage extends BasePage {
     // Cancel first cancelable ticket
     public void cancelTicket() {
         getBtnCancel().click();
-
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
+    }
 
-        // Sleep
+    public void cancelTicket(Ticket ticket) {
+
+    }
+
+    public void deleteTicket(Ticket ticket) {
+
+    }
+
+    public void deleteOrRemoveTicket(Ticket ticket) {
+        switch (ticket.getStatus()) {
+            case Ticket.EXPIRED_TICKET: {
+                deleteTicket(ticket);
+                break;
+            }
+            case Ticket.NEW_TICKET: {
+                cancelTicket(ticket);
+                break;
+            }
+        }
     }
 
 }

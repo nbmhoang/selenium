@@ -1,33 +1,26 @@
 package testcase;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
-import common.Utilities;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-@Test
 public class Main {
 
-    private ExtentReports report;
-    private ExtentTest test;
+    public static void main(String[] args) {
+        ExtentReports reports = new ExtentReports();
 
-    @BeforeClass
-    public void startTest() {
-        String reportPath = Utilities.generatReportPath();
-        report = new ExtentReports(reportPath);
-        test = report.startTest("ExtentDemo");
+        ExtentSparkReporter html = new ExtentSparkReporter("index.html");
+        reports.attachReporter(html);
+
+        ExtentTest test = reports.createTest("Test");
+        test.info("Step 1");
+
+        ExtentTest node = test.createNode("Step 2");
+        node.info("Sub step 1.2");
+        node.info("Sub step 1.2");
+        test.info("Step 3");
+        reports.flush();
     }
 
-    @AfterClass
-    public void endTest() {
-        report.endTest(test);
-        report.flush();
-    }
-
-    public void test() {
-        test.log(LogStatus.PASS, "Alo alo");
-    }
 }

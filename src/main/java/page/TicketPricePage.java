@@ -7,10 +7,10 @@ import static common.Driver.webDriver;
 
 public class TicketPricePage extends BasePage {
 
-    public static final String HEADER = "Train ticket pricing list";
+    public static final String HEADER = "Ticket Price";
 
-    private final By ticketPriceTable = By.xpath("//table[@class='MyTable MedTable']");
     private final By tableHeader = By.xpath("//tr[@class='TableSmallHeader']/th");
+    private final By ticketPriceTable = By.xpath("//table[@class='MyTable MedTable']");
 
     private WebElement getTableHeader() {
         return webDriver.findElement(tableHeader);
@@ -20,9 +20,9 @@ public class TicketPricePage extends BasePage {
         return getTableHeader().getText();
     }
 
-    public void checkPrice(String departStation, String arriveStation) {
-        String xpathString = "//tr[td[li[.='%s to %s']]]//a[@class='BoxLink']";
-        By btnCheckPrice = By.xpath(xpathString);
+    public void bookTicket(String seatType) {
+        WebElement btnBookTicket = webDriver.findElement(By.xpath(String.format("//tr[td[.='%s']]/td/a[.='Book ticket']", seatType)));
+        btnBookTicket.click();
     }
 
 

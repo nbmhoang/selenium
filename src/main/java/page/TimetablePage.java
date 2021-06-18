@@ -1,6 +1,6 @@
 package page;
 
-import common.Utilities;
+import common.Utis;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -27,13 +27,13 @@ public class TimetablePage extends BasePage {
     }
 
     public TicketPriceListPage checkPrice(String departStation, String arriveStation) {
-        Utilities.scrollToEnd();
+        Utis.scrollToEnd();
         getBtnCheckPrice(departStation, arriveStation).click();
         return new TicketPriceListPage();
     }
 
     public BookTicketPage bookTicket(String departStation, String arriveStation) {
-        Utilities.scrollToEnd();
+        Utis.scrollToEnd();
         getBtnBookTicket(departStation, arriveStation).click();
         return new BookTicketPage();
     }

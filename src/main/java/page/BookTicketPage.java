@@ -1,6 +1,6 @@
 package page;
 
-import common.Utilities;
+import common.Utis;
 import data.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -68,14 +68,14 @@ public class BookTicketPage extends BasePage {
     }
 
     public SuccessPage bookTicket() {
-        Utilities.scrollToEnd();
+        Utis.scrollToEnd();
         // Leave all option as default
         getBtnBookTicket().click();
         return new SuccessPage();
     }
 
     public SuccessPage bookTicket(Ticket ticket) {
-        Utilities.scrollToEnd();
+        Utis.scrollToEnd();
 
         if (Objects.nonNull(ticket.getDepartDate())) {
             getDepartDateSelection().selectByVisibleText(ticket.getDepartDate());
@@ -83,14 +83,18 @@ public class BookTicketPage extends BasePage {
             // Set first option
             ticket.setDepartDate(getDepartDateSelection().getFirstSelectedOption().getText());
         }
+        String defaultDepartStation = getDepartStationSelection().getFirstSelectedOption().getText();
+        if (!defaultDepartStation.equals(ticket.getDepartFrom())) {
+            getDepartStationSelection().selectByVisibleText(ticket.getDepartFrom());
+            List<WebElement> originalOptions = getArriveStationSelection().getAllSelectedOptions();
 
-        List<WebElement> currentOption = getArriveStationSelection().getAllSelectedOptions();
-        getDepartStationSelection().selectByVisibleText(ticket.getDepartFrom());
-
-        // Wait until Arrive At option is change(Up to 10s)
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        wait.until((driver) -> !currentOption.equals(getArriveStationSelection().getAllSelectedOptions()));
-
+            // Wait until Arrive At option is change(Up to 10s)
+            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            wait.until((driver) -> {
+                List<WebElement> currentOptions = getArriveStationSelection().getAllSelectedOptions();
+                return !originalOptions.equals(currentOptions);
+            });
+        }
         getArriveStationSelection().selectByVisibleText(ticket.getArriveAt());
         getSeatTypeSelection().selectByVisibleText(ticket.getSeatType());
         getTicketAmountSelection().selectByVisibleText(String.valueOf(ticket.getAmount()));
