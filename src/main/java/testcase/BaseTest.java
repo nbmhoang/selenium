@@ -38,6 +38,7 @@ public class BaseTest {
     public void beforeMethod(String browser, String path, Method method) {
         Test t = method.getAnnotation(Test.class);
         test = reports.createTest(method.getName(), t.description());
+        test.assignDevice(browser);
 
         Driver.initDriver(browser, path);
         webDriver.get(URL);

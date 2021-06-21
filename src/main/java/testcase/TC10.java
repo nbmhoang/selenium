@@ -11,6 +11,7 @@ public class TC10 extends BaseTest {
     @Test(description = "User can't create account with \"Confirm password\" is not the same with \"Password\"")
     public void TC10() {
         try {
+            test.assignCategory("Register");
             test.createNode("Step 1. Go to Register page");
             RegisterPage registerPage = homePage.goToRegisterPage();
             RegisterInfo data = Utils.generateRandomAccount();

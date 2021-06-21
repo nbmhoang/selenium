@@ -16,6 +16,7 @@ public class TC16 extends BaseTest {
     @Test(description = "User can cancel a ticket")
     public void TC16() {
         try {
+            test.assignCategory("Manage Ticket");
             test.createNode("Step 1. Go to Login and login with valid account");
 
             LoginPage loginPage = homePage.goToLoginPage();

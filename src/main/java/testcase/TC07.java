@@ -11,6 +11,7 @@ public class TC07 extends BaseTest {
     @Test(description = "User can create new account")
     public void TC07() {
         try {
+            test.assignCategory("Register");
             test.createNode("Step 1. Go to register page");
             RegisterPage registerPage = homePage.goToRegisterPage();
             RegisterInfo data = Utils.generateRandomAccount();

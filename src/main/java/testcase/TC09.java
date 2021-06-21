@@ -12,6 +12,7 @@ public class TC09 extends BaseTest {
     @Test(description = "User can change password")
     public void TC09() {
         try {
+            test.assignCategory("Change Password");
             test.createNode("Step 1. Go to login page and login with valid account");
             LoginPage loginPage = homePage.goToLoginPage();
 

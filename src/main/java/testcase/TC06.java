@@ -11,6 +11,7 @@ public class TC06 extends BaseTest {
     @Test(description = "Additional pages display once user logged in")
     public void TC06() {
         try {
+            test.assignCategory("Login");
             test.createNode("Step 1. Go to login page");
             LoginPage loginPage = homePage.goToLoginPage();
 

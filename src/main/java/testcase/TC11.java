@@ -11,6 +11,7 @@ public class TC11 extends BaseTest {
     @Test(description = "User can't create account while password and PID fields are empty")
     public void TC11() {
         try {
+            test.assignCategory("Register");
             test.createNode("Step 1. Go to Register page");
             RegisterPage registerPage = homePage.goToRegisterPage();
 
