@@ -16,6 +16,7 @@ public class TC16 extends BaseTest {
     @Test(description = "User can cancel a ticket")
     public void TC16() {
         try {
+            test.assignCategory("Manage Ticket");
             test.createNode("Step 1. Go to Login and login with valid account");
 
             LoginPage loginPage = homePage.goToLoginPage();
@@ -30,7 +31,7 @@ public class TC16 extends BaseTest {
             int currentTotalTicket = myTicketPage.getTotalCancelableTicket();
             myTicketPage.cancelTicket();
 
-            WebDriverWait wait = new WebDriverWait(Driver.webDriver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
             wait.until((webDriver -> myTicketPage.getTotalCancelableTicket() == currentTotalTicket - 1));
             test.pass("Ticket removed from table");
         } catch (TimeoutException e) {

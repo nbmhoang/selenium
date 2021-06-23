@@ -13,6 +13,7 @@ public class TC14 extends BaseTest {
     @Test(description = "User can book 1 ticket at a time")
     public void TC14() {
         try {
+            test.assignCategory("Book Ticket");
             test.createNode("Step 1. Go to Login page and login with valid account");
             LoginPage loginPage = homePage.goToLoginPage();
 

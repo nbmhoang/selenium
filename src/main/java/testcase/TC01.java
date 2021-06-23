@@ -9,6 +9,7 @@ public class TC01 extends BaseTest {
     @Test(description = "User can log into Railway with valid username and password")
     public void TC01() {
         try {
+            test.assignCategory("Login");
             test.createNode("Step 1. Go to login page");
             LoginPage loginPage = this.homePage.goToLoginPage();
             ExtentTest node = test.createNode("Step 2. Login with valid account");

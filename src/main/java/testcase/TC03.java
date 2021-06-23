@@ -11,6 +11,7 @@ public class TC03 extends BaseTest {
     @Test(description = "User cannot log into Railway with invalid password")
     public void TC03() {
         try {
+            test.assignCategory("Login");
             test.createNode("Step 1. Go to login page");
             LoginPage loginPage = this.homePage.goToLoginPage();
             Account account = new Account("hoang@gmail.com", "69696969");

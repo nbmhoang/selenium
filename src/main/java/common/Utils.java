@@ -5,10 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
-
-import static common.Driver.webDriver;
 
 public class Utils {
 
@@ -42,7 +39,7 @@ public class Utils {
     }
 
     public static void scrollToEnd() {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("scrollTo(0, document.body.scrollHeight)");
     }
 

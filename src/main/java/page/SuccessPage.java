@@ -1,18 +1,18 @@
 package page;
 
+import common.Driver;
 import data.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static common.Driver.webDriver;
 
 public class SuccessPage extends BookTicketPage {
 
-    private final int departStationIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Depart Station']/preceding-sibling::th")).size() + 1;
-    private final int arriveStationIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Arrive Station']/preceding-sibling::th")).size() + 1;
-    private final int seatTypeIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Seat Type']/preceding-sibling::th")).size() + 1;
-    private final int departDateIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Depart Date']/preceding-sibling::th")).size() + 1;
-    private final int amountIdx = webDriver.findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Amount']/preceding-sibling::th")).size() + 1;
+    private final int departStationIdx = Driver.getDriver().findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Depart Station']/preceding-sibling::th")).size() + 1;
+    private final int arriveStationIdx = Driver.getDriver().findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Arrive Station']/preceding-sibling::th")).size() + 1;
+    private final int seatTypeIdx = Driver.getDriver().findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Seat Type']/preceding-sibling::th")).size() + 1;
+    private final int departDateIdx = Driver.getDriver().findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Depart Date']/preceding-sibling::th")).size() + 1;
+    private final int amountIdx = Driver.getDriver().findElements(By.xpath("//table[@class='MyTable WideTable']/tbody/tr[@class='TableSmallHeader']/th[.='Amount']/preceding-sibling::th")).size() + 1;
 
     private final By departStation = By.xpath(String.format("//table[@class='MyTable WideTable']/tbody/tr[@class='OddRow']/td[%d]", departStationIdx));
     private final By arriveStation = By.xpath(String.format("//table[@class='MyTable WideTable']/tbody/tr[@class='OddRow']/td[%d]", arriveStationIdx));
@@ -21,23 +21,23 @@ public class SuccessPage extends BookTicketPage {
     private final By amount = By.xpath(String.format("//table[@class='MyTable WideTable']/tbody/tr[@class='OddRow']/td[%d]", amountIdx));
 
     private WebElement getDepartStationElement() {
-        return webDriver.findElement(departStation);
+        return Driver.getDriver().findElement(departStation);
     }
 
     private WebElement getArriveStationElement() {
-        return webDriver.findElement(arriveStation);
+        return Driver.getDriver().findElement(arriveStation);
     }
 
     private WebElement getSeatTypeElement() {
-        return webDriver.findElement(seatType);
+        return Driver.getDriver().findElement(seatType);
     }
 
     private WebElement getDepartDateElement() {
-        return webDriver.findElement(departDate);
+        return Driver.getDriver().findElement(departDate);
     }
 
     private WebElement getAmountElement() {
-        return webDriver.findElement(amount);
+        return Driver.getDriver().findElement(amount);
     }
 
     public String getDepartStation() {

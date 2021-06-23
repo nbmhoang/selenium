@@ -8,6 +8,7 @@ public class TC04 extends BaseTest {
     @Test(description = "Login page displays when un-logged User clicks on \"Book ticket\" tab")
     public void TC04() {
         try {
+            test.assignCategory("Login");
             test.createNode("Step 1. Click on Book Ticket tab");
             String currentPage = homePage.goToBookTicketPage().getCurrentPageHeader();
             test.createNode("Step 2. Check current page is Login Page or not");

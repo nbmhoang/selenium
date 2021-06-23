@@ -1,6 +1,6 @@
 package page;
 
-import static common.Driver.webDriver;
+import common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -22,55 +22,55 @@ public class BasePage {
     private final By welcomeMessage = By.xpath("//div[@id='banner']/div[@class='account']/strong");
 
     protected WebElement getHomeTab() {
-        return webDriver.findElement(homeTab);
+        return Driver.getDriver().findElement(homeTab);
     }
 
     protected WebElement getFAQTab() {
-        return webDriver.findElement(FAQTab);
+        return Driver.getDriver().findElement(FAQTab);
     }
 
     protected WebElement getContactTab() {
-        return webDriver.findElement(contactTab);
+        return Driver.getDriver().findElement(contactTab);
     }
 
     protected WebElement getTimetableTab() {
-        return webDriver.findElement(timetableTab);
+        return Driver.getDriver().findElement(timetableTab);
     }
 
     protected WebElement getTicketPriceTab() {
-        return webDriver.findElement(ticketPriceTab);
+        return Driver.getDriver().findElement(ticketPriceTab);
     }
 
     protected WebElement getBookTicketTab() {
-        return webDriver.findElement(bookTicketTab);
+        return Driver.getDriver().findElement(bookTicketTab);
     }
 
     protected WebElement getRegisterTab() {
-        return webDriver.findElement(registerTab);
+        return Driver.getDriver().findElement(registerTab);
     }
 
     protected WebElement getLoginTab() {
-        return webDriver.findElement(loginTab);
+        return Driver.getDriver().findElement(loginTab);
     }
 
     protected WebElement getMyTicketTab() {
-        return webDriver.findElement(myTicketTab);
+        return Driver.getDriver().findElement(myTicketTab);
     }
 
     protected WebElement getChangePasswordTab() {
-        return webDriver.findElement(changePasswordTab);
+        return Driver.getDriver().findElement(changePasswordTab);
     }
 
     protected WebElement getLogoutTab() {
-        return webDriver.findElement(logoutTab);
+        return Driver.getDriver().findElement(logoutTab);
     }
 
     protected WebElement getPageHeader() {
-        return webDriver.findElement(pageHeader);
+        return Driver.getDriver().findElement(pageHeader);
     }
 
     protected WebElement getWelcomeMessage() {
-        return webDriver.findElement(welcomeMessage);
+        return Driver.getDriver().findElement(welcomeMessage);
     }
 
     public String getWelcomeMessageContent() {
@@ -136,14 +136,14 @@ public class BasePage {
     }
 
     public boolean isMyTicketTabDisplayed() {
-        return webDriver.findElements(myTicketTab).size() != 0;
+        return Driver.getDriver().findElements(myTicketTab).size() != 0;
     }
 
     public boolean isChangePasswordTabDisplayed() {
-        return webDriver.findElements(changePasswordTab).size() != 0;
+        return Driver.getDriver().findElements(changePasswordTab).size() != 0;
     }
 
     public boolean isLogoutTabDisplayed() {
-        return webDriver.findElements(logoutTab).size() != 0;
+        return Driver.getDriver().findElements(logoutTab).size() != 0;
     }
 }

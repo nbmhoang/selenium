@@ -1,9 +1,8 @@
 package page;
 
+import common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static common.Driver.webDriver;
 
 public class ForgotPasswordPage extends BasePage {
 
@@ -11,11 +10,11 @@ public class ForgotPasswordPage extends BasePage {
     private final By btnSend = By.xpath("//input[@type='submit']");
 
     private WebElement getInputEmail() {
-        return webDriver.findElement(inputEmail);
+        return Driver.getDriver().findElement(inputEmail);
     }
 
     private WebElement getBtnSend() {
-        return webDriver.findElement(btnSend);
+        return Driver.getDriver().findElement(btnSend);
     }
 
     public void requestResetPassword(String email) {

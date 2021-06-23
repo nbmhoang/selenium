@@ -10,6 +10,7 @@ public class TC02 extends BaseTest {
     @Test(description = "User can't login with blank \"Username\" textbox")
     public void TC02() {
         try {
+            test.assignCategory("Login");
             test.createNode("Step 1. Go to login page");
             LoginPage loginPage = this.homePage.goToLoginPage();
             Account account = new Account("", "123456789");

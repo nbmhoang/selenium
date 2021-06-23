@@ -1,0 +1,25 @@
+Depart Station,Arrive Station,Seat Type,Amount
+Sài Gòn,Phan Thiết,Hard seat,1
+Sài Gòn,Nha Trang,Soft seat,2
+Sài Gòn,Đà Nẵng,Soft seat with air conditioner,3
+Sài Gòn,Huế,Hard bed,4
+Sài Gòn,Quảng Ngãi,Soft bed,5
+Phan Thiết,Sài Gòn,Soft bed with air conditioner,6
+Phan Thiết,Nha Trang,Hard seat,7
+Phan Thiết,Đà Nẵng,Soft seat,8
+Nha Trang,Sài Gòn,Soft seat with air conditioner,9
+Nha Trang,Phan Thiết,Hard bed,10
+Nha Trang,Đà Nẵng,Soft bed,1
+Nha Trang,Huế,Soft bed with air conditioner,2
+Đà Nẵng,Sài Gòn,Hard seat,3
+Đà Nẵng,Nha Trang,Soft seat,4
+Đà Nẵng,Huế,Soft seat with air conditioner,5
+Đà Nẵng,Quảng Ngãi,Hard bed,6
+Huế,Sài Gòn,Soft bed,7
+Huế,Nha Trang,Soft bed with air conditioner,8
+Huế,Đà Nẵng,Hard seat,9
+Huế,Quảng Ngãi,Soft seat,10
+Quảng Ngãi,Sài Gòn,Soft seat with air conditioner,1
+Quảng Ngãi,Nha Trang,Hard bed,2
+Quảng Ngãi,Đà Nẵng,Soft bed,3
+Quảng Ngãi,Huế,Soft bed with air conditioner,4

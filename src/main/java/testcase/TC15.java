@@ -12,6 +12,7 @@ public class TC15 extends BaseTest {
     @Test(description = "User can open \"Book ticket\" page by clicking on \"Book ticket\" link in \"Train timetable\" page")
     public void TC15() {
         try {
+            test.assignCategory("Book Ticket");
             test.createNode("Step 1. Go to Login page and login with valid account");
             LoginPage loginPage = homePage.goToLoginPage();
 

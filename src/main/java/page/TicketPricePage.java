@@ -1,9 +1,8 @@
 package page;
 
+import common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static common.Driver.webDriver;
 
 public class TicketPricePage extends BasePage {
 
@@ -13,7 +12,7 @@ public class TicketPricePage extends BasePage {
     private final By ticketPriceTable = By.xpath("//table[@class='MyTable MedTable']");
 
     private WebElement getTableHeader() {
-        return webDriver.findElement(tableHeader);
+        return Driver.getDriver().findElement(tableHeader);
     }
 
     public String getTableHeaderContent() {
@@ -21,7 +20,7 @@ public class TicketPricePage extends BasePage {
     }
 
     public void bookTicket(String seatType) {
-        WebElement btnBookTicket = webDriver.findElement(By.xpath(String.format("//tr[td[.='%s']]/td/a[.='Book ticket']", seatType)));
+        WebElement btnBookTicket = Driver.getDriver().findElement(By.xpath(String.format("//tr[td[.='%s']]/td/a[.='Book ticket']", seatType)));
         btnBookTicket.click();
     }
 

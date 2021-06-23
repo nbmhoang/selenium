@@ -10,6 +10,7 @@ public class TC05 extends BaseTest {
     @Test(description = "System shows message when user enters wrong password several times")
     public void TC05() {
         try {
+            test.assignCategory("Login");
             test.createNode("Step 1. Go to login page");
             LoginPage loginPage = homePage.goToLoginPage();
             Account account = new Account("hoang@gmail.com", "hoanggmail.com");

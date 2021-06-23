@@ -1,11 +1,10 @@
 package page;
 
+import common.Driver;
 import common.Utils;
 import data.RegisterInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import static common.Driver.webDriver;
 
 public class RegisterPage extends BasePage {
 
@@ -26,59 +25,59 @@ public class RegisterPage extends BasePage {
     private final By hyperlinkConfirmationPage = By.linkText("here");
 
     private WebElement getInputEmail() {
-        return webDriver.findElement(inputEmail);
+        return Driver.getDriver().findElement(inputEmail);
     }
 
     private WebElement getInputPassword() {
-        return webDriver.findElement(inputPassword);
+        return Driver.getDriver().findElement(inputPassword);
     }
 
     private WebElement getInputConfirmPassword() {
-        return webDriver.findElement(inputConfirmPassword);
+        return Driver.getDriver().findElement(inputConfirmPassword);
     }
 
     private WebElement getInputPID() {
-        return webDriver.findElement(inputPID);
+        return Driver.getDriver().findElement(inputPID);
     }
 
     private WebElement getBtnRegister() {
-        return webDriver.findElement(btnRegister);
+        return Driver.getDriver().findElement(btnRegister);
     }
 
     private WebElement getErrorMessage() {
-        return webDriver.findElement(errorMessage);
+        return Driver.getDriver().findElement(errorMessage);
     }
 
     private WebElement getLblEmailValidationError() {
-        return webDriver.findElement(lblEmailValidationError);
+        return Driver.getDriver().findElement(lblEmailValidationError);
     }
 
     private WebElement getLblPasswordValidationError() {
-        return webDriver.findElement(lblPasswordValidationError);
+        return Driver.getDriver().findElement(lblPasswordValidationError);
     }
 
     private WebElement getLblConfirmPasswordValidationError() {
-        return webDriver.findElement(lblConfirmPasswordValidationError);
+        return Driver.getDriver().findElement(lblConfirmPasswordValidationError);
     }
 
     private WebElement getLblPIDValidationError() {
-        return webDriver.findElement(lblPIDValidationError);
+        return Driver.getDriver().findElement(lblPIDValidationError);
     }
 
     private WebElement getHyperlinkLogin() {
-        return webDriver.findElement(hyperlinkLoginPage);
+        return Driver.getDriver().findElement(hyperlinkLoginPage);
     }
 
     private WebElement getHyperlinkConfirmation() {
-        return webDriver.findElement(hyperlinkConfirmationPage);
+        return Driver.getDriver().findElement(hyperlinkConfirmationPage);
     }
 
     private WebElement getResponseMessage() {
-        return webDriver.findElement(responseMessage);
+        return Driver.getDriver().findElement(responseMessage);
     }
 
     public boolean isErrorMessageDisplayed() {
-        return webDriver.findElements(errorMessage).size() != 0;
+        return Driver.getDriver().findElements(errorMessage).size() != 0;
     }
 
     public String getErrorMessageContent() {
@@ -100,7 +99,7 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isEmailValidationErrorDisplayed() {
-        return webDriver.findElements(lblEmailValidationError).size() != 0;
+        return Driver.getDriver().findElements(lblEmailValidationError).size() != 0;
     }
 
     public String getEmailValidationError() {
@@ -108,7 +107,7 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isPasswordValidationErrorDisplayed() {
-        return webDriver.findElements(lblPasswordValidationError).size() != 0;
+        return Driver.getDriver().findElements(lblPasswordValidationError).size() != 0;
     }
 
     public String getPasswordValidationError() {
@@ -116,7 +115,7 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isConfirmPasswordValidationErrorDisplayed() {
-        return webDriver.findElements(lblConfirmPasswordValidationError).size() != 0;
+        return Driver.getDriver().findElements(lblConfirmPasswordValidationError).size() != 0;
     }
 
     public String getConfirmPasswordValidationError() {
@@ -124,7 +123,7 @@ public class RegisterPage extends BasePage {
     }
 
     public boolean isPIDValidationErrorDisplayed() {
-        return webDriver.findElements(lblPIDValidationError).size() != 0;
+        return Driver.getDriver().findElements(lblPIDValidationError).size() != 0;
     }
 
     public String getPIDValidationError() {

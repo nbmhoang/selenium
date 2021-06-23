@@ -1,5 +1,6 @@
 package page;
 
+import common.Driver;
 import common.Utils;
 import data.Ticket;
 import org.openqa.selenium.By;
@@ -10,8 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
-
-import static common.Driver.webDriver;
 
 public class BookTicketPage extends BasePage {
 
@@ -25,27 +24,27 @@ public class BookTicketPage extends BasePage {
     private final By btnBookTicket = By.xpath("//input[@type='submit']");
 
     private Select getDepartDateSelection() {
-        return new Select(webDriver.findElement(departDateSelection));
+        return new Select(Driver.getDriver().findElement(departDateSelection));
     }
 
     private Select getDepartStationSelection() {
-        return new Select(webDriver.findElement(departStationSelection));
+        return new Select(Driver.getDriver().findElement(departStationSelection));
     }
 
     private Select getArriveStationSelection() {
-        return new Select(webDriver.findElement(arriveStationSelection));
+        return new Select(Driver.getDriver().findElement(arriveStationSelection));
     }
 
     private Select getSeatTypeSelection() {
-        return new Select(webDriver.findElement(seatTypeSelection));
+        return new Select(Driver.getDriver().findElement(seatTypeSelection));
     }
 
     private Select getTicketAmountSelection() {
-        return new Select(webDriver.findElement(ticketAmountSelection));
+        return new Select(Driver.getDriver().findElement(ticketAmountSelection));
     }
 
     private WebElement getBtnBookTicket() {
-        return webDriver.findElement(btnBookTicket);
+        return Driver.getDriver().findElement(btnBookTicket);
     }
 
     public String getSelectedDepartDate() {
@@ -90,7 +89,7 @@ public class BookTicketPage extends BasePage {
             List<WebElement> originalOptions = getArriveStationSelection().getAllSelectedOptions();
 
             // Wait until Arrive At option is change(Up to 10s)
-            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
             wait.until((driver) -> {
                 List<WebElement> currentOptions = getArriveStationSelection().getAllSelectedOptions();
                 return !originalOptions.equals(currentOptions);
