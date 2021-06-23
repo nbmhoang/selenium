@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Railway Testcase" parallel="false">
+<suite name="Railway Testcase" thread-count="16" parallel="classes">
     <parameter name="path" value="\driver\chromedriver.exe"/>
     <parameter name="browser" value="chrome"/>
     <test name="Set 1">
