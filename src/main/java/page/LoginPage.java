@@ -1,44 +1,78 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
+
+import common.Utils;
+import data.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
-    private By inputEmail = By.xpath("//input[@id='username']");
-    private By inputPassword = By.xpath("//input[@id='password']");
-    private By btnLogin = By.xpath("//input[@type='submit']");
-    private By errorMessage = By.xpath("//p[@class='message error LoginForm']");
+    public static final String HEADER = "Login Page";
 
-    protected WebElement getInputEmail() {
-        return Driver.webDriver.findElement(inputEmail);
+    private final By inputEmail = By.xpath("//input[@id='username']");
+    private final By inputPassword = By.xpath("//input[@id='password']");
+    private final By btnLogin = By.xpath("//input[@type='submit']");
+    private final By errorMessage = By.xpath("//p[@class='message error LoginForm']");
+    private final By hyperlinkRegistrationPage = By.linkText("Registration Page");
+    private final By hyperlinkForgotPasswordPage = By.linkText("Forgot Password Page");
+
+    private WebElement getInputEmail() {
+        return webDriver.findElement(inputEmail);
     }
 
-    protected WebElement getInputPassword() {
-        return Driver.webDriver.findElement(inputPassword);
+    private WebElement getInputPassword() {
+        return webDriver.findElement(inputPassword);
     }
 
-    protected WebElement getBtnLogin() {
-        return Driver.webDriver.findElement(btnLogin);
+    private WebElement getBtnLogin() {
+        return webDriver.findElement(btnLogin);
     }
 
-    protected WebElement getErrorMessage() {
-        return Driver.webDriver.findElement(errorMessage);
+    private WebElement getErrorMessage() {
+        return webDriver.findElement(errorMessage);
     }
 
-    public boolean login(String username, String password) {
-        getInputEmail().sendKeys(username);
-        getInputPassword().sendKeys(password);
+    private WebElement getHyperlinkRegistrationPage() {
+        return webDriver.findElement(hyperlinkRegistrationPage);
+    }
+
+    private WebElement getHyperlinkForgotPassword() {
+        return webDriver.findElement(hyperlinkForgotPasswordPage);
+    }
+
+    public RegisterPage clickHyperlinkRegisterPage() {
+        getHyperlinkRegistrationPage().click();
+        return new RegisterPage();
+    }
+
+    public ForgotPasswordPage clickHyperlinkForgotPasswordPage() {
+        getHyperlinkForgotPassword().click();
+        return new ForgotPasswordPage();
+    }
+
+    public HomePage login(Account account) {
+        Utils.scrollToEnd();
+        // Clear input before input new one
+        WebElement emailInput = getInputEmail();
+        WebElement passwordInput = getInputPassword();
+        emailInput.clear();
+        passwordInput.clear();
+
+        emailInput.sendKeys(account.getEmail());
+        passwordInput.sendKeys(account.getPassword());
         // scroll
         getBtnLogin().click();
-        try {
-            getErrorMessage();
-            return false;
-        } catch (Exception err) {
-            return true;
-        }
+        return new HomePage();
+    }
+
+    public boolean isErrorDisplay() {
+        return webDriver.findElements(errorMessage).size() != 0;
+    }
+
+    public String getErrorMessageContent() {
+        return getErrorMessage().getText();
     }
 
 

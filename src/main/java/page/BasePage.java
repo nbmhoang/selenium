@@ -1,84 +1,149 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class BasePage {
 
-    private By tabHome = By.xpath("//div[@id='menu']//a[@href='../']");
-    private By tabFAQ = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
-    private By tabContact = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
-    private By tabTimetable = By.xpath("//div[@id='menu']//a[@href='TrainTimeListPage.cshtml']");
-    private By tabTicketPrice = By.xpath("//div[@id='menu']//a[@href='/Page/TrainPriceListPage.cshtml']");
-    private By tabBookTicket = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
-    private By tabRegister = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
-    private By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
-    private By tabMyTicket = By.xpath("//div[@id='menu']//a[@href='/Page/ManageTicket.cshtml']");
-    private By tabChangePassword = By.xpath("//div[@id='menu']//a[@href='/Account/ChangePassword.cshtml']");
-    private By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
+    private final By homeTab = By.xpath("//div[@id='menu']//a[@href='../']");
+    private final By FAQTab = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
+    private final By contactTab = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
+    private final By timetableTab = By.xpath("//div[@id='menu']//a[@href='TrainTimeListPage.cshtml']");
+    private final By ticketPriceTab = By.xpath("//div[@id='menu']//a[@href='/Page/TrainPriceListPage.cshtml']");
+    private final By bookTicketTab = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
+    private final By registerTab = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
+    private final By loginTab = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
+    private final By myTicketTab = By.xpath("//div[@id='menu']//a[@href='/Page/ManageTicket.cshtml']");
+    private final By changePasswordTab = By.xpath("//div[@id='menu']//a[@href='/Account/ChangePassword.cshtml']");
+    private final By logoutTab = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
 
-    private By welcomeMessage = By.xpath("//div[@id='banner']/div[@class='account']/strong");
+    private final By pageHeader = By.xpath("//div[@id='content']/h1[1]");
+    private final By welcomeMessage = By.xpath("//div[@id='banner']/div[@class='account']/strong");
 
-    protected WebElement getTabHome() {
-        return Driver.webDriver.findElement(tabHome);
+    protected WebElement getHomeTab() {
+        return webDriver.findElement(homeTab);
     }
 
-    protected WebElement getTabFAQ() {
-        return Driver.webDriver.findElement(tabFAQ);
+    protected WebElement getFAQTab() {
+        return webDriver.findElement(FAQTab);
     }
 
-    protected WebElement getTabContact() {
-        return Driver.webDriver.findElement(tabContact);
+    protected WebElement getContactTab() {
+        return webDriver.findElement(contactTab);
     }
 
-    protected WebElement getTabTimetable() {
-        return Driver.webDriver.findElement(tabTimetable);
+    protected WebElement getTimetableTab() {
+        return webDriver.findElement(timetableTab);
     }
 
-    protected WebElement getTabTicketPrice() {
-        return Driver.webDriver.findElement(tabTicketPrice);
+    protected WebElement getTicketPriceTab() {
+        return webDriver.findElement(ticketPriceTab);
     }
 
-    protected WebElement getTabBookTicket() {
-        return Driver.webDriver.findElement(tabBookTicket);
+    protected WebElement getBookTicketTab() {
+        return webDriver.findElement(bookTicketTab);
     }
 
-    protected WebElement getTabRegister() {
-        return Driver.webDriver.findElement(tabRegister);
+    protected WebElement getRegisterTab() {
+        return webDriver.findElement(registerTab);
     }
 
-    protected WebElement getTabLogin() {
-        return Driver.webDriver.findElement(tabLogin);
+    protected WebElement getLoginTab() {
+        return webDriver.findElement(loginTab);
     }
 
-    protected WebElement getTabMyTicket() {
-        return Driver.webDriver.findElement(tabMyTicket);
+    protected WebElement getMyTicketTab() {
+        return webDriver.findElement(myTicketTab);
     }
 
-    protected WebElement getTabChangePassword() {
-        return Driver.webDriver.findElement(tabChangePassword);
+    protected WebElement getChangePasswordTab() {
+        return webDriver.findElement(changePasswordTab);
     }
 
-    protected WebElement getTabLogout() {
-        return Driver.webDriver.findElement(tabLogout);
+    protected WebElement getLogoutTab() {
+        return webDriver.findElement(logoutTab);
+    }
+
+    protected WebElement getPageHeader() {
+        return webDriver.findElement(pageHeader);
     }
 
     protected WebElement getWelcomeMessage() {
-        return Driver.webDriver.findElement(welcomeMessage);
+        return webDriver.findElement(welcomeMessage);
     }
 
     public String getWelcomeMessageContent() {
         return getWelcomeMessage().getText();
     }
 
+    public boolean isUserLoggedIn() {
+        return !getWelcomeMessageContent().equals("Welcome guest!");
+    }
+
+    public String getCurrentPageHeader() {
+        return getPageHeader().getText();
+    }
+
     public LoginPage goToLoginPage() {
-        getTabLogin().click();
+        getLoginTab().click();
         return new LoginPage();
     }
 
     public MyTicketPage goToMyTicketPage() {
-        getTabMyTicket().click();
+        getMyTicketTab().click();
         return new MyTicketPage();
+    }
+
+    public FAQPage goToFAQPage() {
+        getFAQTab().click();
+        return new FAQPage();
+    }
+
+    public ContactPage goToContactPage() {
+        getContactTab().click();
+        return new ContactPage();
+    }
+
+    public TimetablePage goToTimetablePage() {
+        getTimetableTab().click();
+        return new TimetablePage();
+    }
+
+    public TicketPriceListPage goToTicketPricePage() {
+        getTicketPriceTab().click();
+        return new TicketPriceListPage();
+    }
+
+    public BookTicketPage goToBookTicketPage() {
+        getBookTicketTab().click();
+        return new BookTicketPage();
+    }
+
+    public ChangePasswordPage goToChangePasswordPage() {
+        getChangePasswordTab().click();
+        return new ChangePasswordPage();
+    }
+
+    public RegisterPage goToRegisterPage() {
+        getRegisterTab().click();
+        return new RegisterPage();
+    }
+
+    public HomePage logout() {
+        getLogoutTab().click();
+        return new HomePage();
+    }
+
+    public boolean isMyTicketTabDisplayed() {
+        return webDriver.findElements(myTicketTab).size() != 0;
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return webDriver.findElements(changePasswordTab).size() != 0;
+    }
+
+    public boolean isLogoutTabDisplayed() {
+        return webDriver.findElements(logoutTab).size() != 0;
     }
 }

@@ -1,44 +1,60 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
+
+import common.Utils;
+import data.ChangePasswordInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ChangePasswordPage extends BasePage {
 
-    private By inputCurrentPassword = By.id("currentPassword");
-    private By inputNewPassword = By.id("newPassword");
-    private By inputConfirmPassword = By.id("confirmPassword");
-    private By btnChangePassword = By.xpath("//input[@type='submit']");
-    private By errorMessage = By.xpath("//p[@class='message error']");
-    private By validationErrorMessage = By.xpath("//label[@class='validation-error']");
+    public static final String HEADER = "Change password";
+
+    private final By inputCurrentPassword = By.id("currentPassword");
+    private final By inputNewPassword = By.id("newPassword");
+    private final By inputConfirmPassword = By.id("confirmPassword");
+    private final By btnChangePassword = By.xpath("//input[@type='submit']");
+    private final By errorMessage = By.xpath("//p[@class='message error']");
+    private final By validationErrorMessage = By.xpath("//label[@class='validation-error']");
+    private final By successMessage = By.xpath("//p[@class='message success']");
 
     protected WebElement getInputCurrentPassword() {
-        return Driver.webDriver.findElement(inputCurrentPassword);
+        return webDriver.findElement(inputCurrentPassword);
     }
 
     protected WebElement getInputNewPassword() {
-        return Driver.webDriver.findElement(inputNewPassword);
+        return webDriver.findElement(inputNewPassword);
     }
 
     protected WebElement getInputConfirmPassword() {
-        return Driver.webDriver.findElement(inputConfirmPassword);
+        return webDriver.findElement(inputConfirmPassword);
     }
 
     protected WebElement getBtnChangePassword() {
-        return Driver.webDriver.findElement(btnChangePassword);
+        return webDriver.findElement(btnChangePassword);
     }
 
     protected WebElement getErrorMessage() {
-        return Driver.webDriver.findElement(errorMessage);
+        return webDriver.findElement(errorMessage);
     }
 
-    public boolean changePassword(String currentPassword, String newPassword, String confirmPassword) {
-        getInputCurrentPassword().sendKeys(currentPassword);
-        getInputNewPassword().sendKeys(newPassword);
-        getInputConfirmPassword().sendKeys(confirmPassword);
+    private WebElement getSuccessMessage() {
+        return webDriver.findElement(successMessage);
+    }
+
+    public String getSuccessMessageContent() {
+        return getSuccessMessage().getText();
+    }
+
+    public boolean changePassword(ChangePasswordInfo data) {
+        Utils.scrollToEnd();
+
+        getInputCurrentPassword().sendKeys(data.getCurrentPassword());
+        getInputNewPassword().sendKeys(data.getNewPassword());
+        getInputConfirmPassword().sendKeys(data.getConfirmPassword());
         getBtnChangePassword().click();
-        return !getErrorMessage().isDisplayed();
+        return webDriver.findElements(errorMessage).size() == 0;
     }
 
 }

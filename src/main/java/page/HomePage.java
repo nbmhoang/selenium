@@ -1,20 +1,21 @@
 package page;
 
-import common.Driver;
+import static common.Driver.webDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
 
-    private By createAnAccountLink = By.xpath("//a[@href='/Account/Register.cshtml' and text()='create an account']");
+    public static final String HEADER = "Welcome to Safe Railway";
+
+    private final By createAnAccountLink = By.linkText("create an account");
 
     private WebElement getCreateAnAccountLink() {
-        return Driver.webDriver.findElement(createAnAccountLink);
+        return webDriver.findElement(createAnAccountLink);
     }
 
     public void goToCreateAnAccountLink() {
         getCreateAnAccountLink().click();
     }
-
 
 }
