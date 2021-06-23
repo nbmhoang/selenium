@@ -1,7 +1,5 @@
 package testcase;
 
-import static common.Driver.webDriver;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -20,12 +18,14 @@ import java.lang.reflect.Method;
 public class BaseTest {
 
     protected HomePage homePage = new HomePage();
-    private static final String reportPath = Utils.generateReportPath();
+
+    // Get data from env
     private final String URL = System.getenv("URL");
     protected final Account account = new Account(System.getenv("USERNAME"), System.getenv("PASSWORD"));
 
+    private static final String reportPath = Utils.generateReportPath();
     protected static ExtentReports reports = new ExtentReports();
-    protected static ExtentTest test = null;
+    protected ExtentTest test = null;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -41,13 +41,13 @@ public class BaseTest {
         test.assignDevice(browser);
 
         Driver.initDriver(browser, path);
-        webDriver.get(URL);
-        webDriver.manage().window().maximize();
+        Driver.getDriver().get(URL);
+        Driver.getDriver().manage().window().maximize();
     }
 
     @AfterMethod
     public void afterMethod() {
-        webDriver.quit();
+        Driver.closeBrowser();
     }
 
 
