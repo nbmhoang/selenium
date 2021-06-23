@@ -1,7 +1,7 @@
 package page;
 
-import static common.Driver.webDriver;
 
+import common.Driver;
 import common.Utils;
 import data.ChangePasswordInfo;
 import org.openqa.selenium.By;
@@ -20,27 +20,27 @@ public class ChangePasswordPage extends BasePage {
     private final By successMessage = By.xpath("//p[@class='message success']");
 
     protected WebElement getInputCurrentPassword() {
-        return webDriver.findElement(inputCurrentPassword);
+        return Driver.getDriver().findElement(inputCurrentPassword);
     }
 
     protected WebElement getInputNewPassword() {
-        return webDriver.findElement(inputNewPassword);
+        return Driver.getDriver().findElement(inputNewPassword);
     }
 
     protected WebElement getInputConfirmPassword() {
-        return webDriver.findElement(inputConfirmPassword);
+        return Driver.getDriver().findElement(inputConfirmPassword);
     }
 
     protected WebElement getBtnChangePassword() {
-        return webDriver.findElement(btnChangePassword);
+        return Driver.getDriver().findElement(btnChangePassword);
     }
 
     protected WebElement getErrorMessage() {
-        return webDriver.findElement(errorMessage);
+        return Driver.getDriver().findElement(errorMessage);
     }
 
     private WebElement getSuccessMessage() {
-        return webDriver.findElement(successMessage);
+        return Driver.getDriver().findElement(successMessage);
     }
 
     public String getSuccessMessageContent() {
@@ -54,7 +54,7 @@ public class ChangePasswordPage extends BasePage {
         getInputNewPassword().sendKeys(data.getNewPassword());
         getInputConfirmPassword().sendKeys(data.getConfirmPassword());
         getBtnChangePassword().click();
-        return webDriver.findElements(errorMessage).size() == 0;
+        return Driver.getDriver().findElements(errorMessage).size() == 0;
     }
 
 }

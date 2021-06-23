@@ -1,6 +1,6 @@
 package page;
 
-import static common.Driver.webDriver;
+import common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +11,7 @@ public class HomePage extends BasePage {
     private final By createAnAccountLink = By.linkText("create an account");
 
     private WebElement getCreateAnAccountLink() {
-        return webDriver.findElement(createAnAccountLink);
+        return Driver.getDriver().findElement(createAnAccountLink);
     }
 
     public void goToCreateAnAccountLink() {

@@ -1,9 +1,9 @@
 package page;
 
+import common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static common.Driver.webDriver;
 
 public class ConfirmationPage extends BasePage {
 
@@ -11,11 +11,11 @@ public class ConfirmationPage extends BasePage {
     private final By btnConfirm = By.xpath("//input[@type='submit']");
 
     private WebElement getInputConfirmationCode() {
-        return webDriver.findElement(inputConfirmationCode);
+        return Driver.getDriver().findElement(inputConfirmationCode);
     }
 
     private WebElement getBtnConfirm() {
-        return webDriver.findElement(btnConfirm);
+        return Driver.getDriver().findElement(btnConfirm);
     }
 
     public void confirmAccount(String confirmCode) {

@@ -10,12 +10,7 @@ import java.util.Objects;
 
 public class Driver {
 
-    public static WebDriver webDriver;
-
-    private static void initDefault() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/driver/chromedriver.exe");
-        webDriver = new ChromeDriver();
-    }
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static void initDriver(String browserName, String path) {
         if (Objects.nonNull(browserName) && Objects.nonNull(path)) {
@@ -23,27 +18,33 @@ public class Driver {
             switch (browserName) {
                 case "chrome": {
                     System.setProperty("webdriver.chrome.driver", absolutePath);
-                    webDriver = new ChromeDriver();
+                    driver.set(new ChromeDriver());
                     break;
                 }
                 case "firefox": {
                     System.setProperty("webdriver.gecko.driver", absolutePath);
-                    webDriver = new FirefoxDriver();
+                    driver.set(new FirefoxDriver());
                     break;
                 }
                 case "edge": {
                     System.setProperty("webdriver.edge.driver", absolutePath);
-                    webDriver = new EdgeDriver();
+                    driver.set(new EdgeDriver());
                     break;
                 }
                 default: {
-                    System.out.println("Using default driver");
-                    initDefault();
+                    System.out.println("Invalid driver");
                 }
             }
-        } else {
-            initDefault();
         }
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void closeBrowser() {
+        driver.get().close();
+        driver.remove();
     }
 
 }

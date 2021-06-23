@@ -1,7 +1,7 @@
 package page;
 
-import static common.Driver.webDriver;
 
+import common.Driver;
 import common.Utils;
 import data.Account;
 import org.openqa.selenium.By;
@@ -19,27 +19,27 @@ public class LoginPage extends BasePage {
     private final By hyperlinkForgotPasswordPage = By.linkText("Forgot Password Page");
 
     private WebElement getInputEmail() {
-        return webDriver.findElement(inputEmail);
+        return Driver.getDriver().findElement(inputEmail);
     }
 
     private WebElement getInputPassword() {
-        return webDriver.findElement(inputPassword);
+        return Driver.getDriver().findElement(inputPassword);
     }
 
     private WebElement getBtnLogin() {
-        return webDriver.findElement(btnLogin);
+        return Driver.getDriver().findElement(btnLogin);
     }
 
     private WebElement getErrorMessage() {
-        return webDriver.findElement(errorMessage);
+        return Driver.getDriver().findElement(errorMessage);
     }
 
     private WebElement getHyperlinkRegistrationPage() {
-        return webDriver.findElement(hyperlinkRegistrationPage);
+        return Driver.getDriver().findElement(hyperlinkRegistrationPage);
     }
 
     private WebElement getHyperlinkForgotPassword() {
-        return webDriver.findElement(hyperlinkForgotPasswordPage);
+        return Driver.getDriver().findElement(hyperlinkForgotPasswordPage);
     }
 
     public RegisterPage clickHyperlinkRegisterPage() {
@@ -68,7 +68,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isErrorDisplay() {
-        return webDriver.findElements(errorMessage).size() != 0;
+        return Driver.getDriver().findElements(errorMessage).size() != 0;
     }
 
     public String getErrorMessageContent() {

@@ -1,7 +1,7 @@
 package page;
 
-import static common.Driver.webDriver;
 
+import common.Driver;
 import data.Ticket;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -23,35 +23,35 @@ public class MyTicketPage extends BasePage {
     private final By btnDelete = By.xpath("//input[@type='button' and @value='Delete']");
 
     private WebElement getTicketTable() {
-        return webDriver.findElement(ticketTable);
+        return Driver.getDriver().findElement(ticketTable);
     }
 
     private Select getDepartStationSelection() {
-        return new Select(webDriver.findElement(departStationSelection));
+        return new Select(Driver.getDriver().findElement(departStationSelection));
     }
 
     private Select getArriveStationSelection() {
-        return new Select(webDriver.findElement(arriveStationSelection));
+        return new Select(Driver.getDriver().findElement(arriveStationSelection));
     }
 
     private WebElement getInputDepartDate() {
-        return webDriver.findElement(inputDepartDate);
+        return Driver.getDriver().findElement(inputDepartDate);
     }
 
     private Select getTicketStatusSelection() {
-        return new Select(webDriver.findElement(ticketStatusSelection));
+        return new Select(Driver.getDriver().findElement(ticketStatusSelection));
     }
 
     private WebElement getBtnFilter() {
-        return webDriver.findElement(btnFilter);
+        return Driver.getDriver().findElement(btnFilter);
     }
 
     private WebElement getBtnCancel() {
-        return webDriver.findElement(btnCancel);
+        return Driver.getDriver().findElement(btnCancel);
     }
 
     private WebElement getBtnDelete() {
-        return webDriver.findElement(btnDelete);
+        return Driver.getDriver().findElement(btnDelete);
     }
 
     public void filterTicket(String departStation, String arriveStation, String departDate, String ticketStatus) {
@@ -63,28 +63,28 @@ public class MyTicketPage extends BasePage {
     }
 
     public int getTotalTicket() {
-        return webDriver.findElements(By.xpath("//table[@class='MyTable']//tr")).size() - 1;
+        return Driver.getDriver().findElements(By.xpath("//table[@class='MyTable']//tr")).size() - 1;
     }
 
     public int getTotalCancelableTicket() {
-        return webDriver.findElements(btnCancel).size();
+        return Driver.getDriver().findElements(btnCancel).size();
     }
 
     public int getTotalDeletableTicket() {
-        return webDriver.findElements(btnDelete).size();
+        return Driver.getDriver().findElements(btnDelete).size();
     }
 
     // Delete first deletable ticket
     public void deleteTicket() {
         getBtnDelete().click();
-        Alert alert = webDriver.switchTo().alert();
+        Alert alert = Driver.getDriver().switchTo().alert();
         alert.accept();
     }
 
     // Cancel first cancelable ticket
     public void cancelTicket() {
         getBtnCancel().click();
-        Alert alert = webDriver.switchTo().alert();
+        Alert alert = Driver.getDriver().switchTo().alert();
         alert.accept();
     }
 
